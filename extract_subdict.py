@@ -137,7 +137,7 @@ def extract_subdict(dictionary, fields=None):
         The original dict, from which the subdict will be extracted.
     fields : list of strings, optional
         Keys, in dotted-notation (e.g: 'person.name', 'company.address.city'),
-        from the original that must be in the subdict.
+        from the original dict that must be in the subdict.
 
     >>> from pprint import pprint
     >>> d = {'a': 1, 'b': 'test', 'c': None, 'd': {'da': '3', 'db': 1.25, 'dc': {'dca': 0, 'dcb': False}}}
