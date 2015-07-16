@@ -1,4 +1,4 @@
-# subdict_from_dotted_keys
+# subdict_by_dotted_keys
 
     >>> from pprint import pprint
     >>> d = {'a': 1, 'b': 'test', 'c': None, 'd': {'da': '3', 'db': 1.25, 'dc': {'dca': 0, 'dcb': False}}}
