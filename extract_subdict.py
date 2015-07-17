@@ -7,6 +7,12 @@ def get_dotted_keys(_dict, prefix=None):
         The checked dict.
     prefix : str, optional
         If passed, all keys will have `prefix` + "." (a dot) as a prefix.
+
+    Examples
+    ----------
+    >>> d = {'a': 1, 'b': 0, 'c': {'ca': '3', 'cb': {'cba': 0, 'cbb': False}}}
+    >>> sorted(get_dotted_keys(d))
+    ['a', 'b', 'c', 'c.ca', 'c.cb', 'c.cb.cba', 'c.cb.cbb']
     """
     keys = []
     for key, value in _dict.iteritems():
@@ -40,6 +46,14 @@ def get_item(_dict, dotted_key):
     KeyError
         If the key is invalid.
 
+    Examples
+    ----------
+    >>> d = {'employee': {'name': 'Alex', 'company': {'name': 'XPTO'}}}
+    >>> get_item(d, 'employee.name')
+    'Alex'
+    >>> get_item(d, 'employee.company')
+    {'name': 'XPTO'}
+
     """
     value = _dict.copy()
     for subkey in dotted_key.split('.'):
@@ -60,6 +74,13 @@ def set_item(_dict, dotted_key, value):
         The key, in dotted-notation
     value
         The value to be set.
+
+    Examples
+    ----------
+    >>> d = {}
+    >>> set_item(d, 'b.a', True)
+    >>> d
+    {'b': {'a': True}}
 
     """
     key_parts = dotted_key.split('.')
@@ -93,6 +114,13 @@ def extract_subdict(dictionary, keys=None, strict=False):
     ------
     KeyError
         If at least one key is invalid AND `strict` is True.
+
+    Examples
+    ----------
+    >>> from pprint import pprint
+    >>> d = {'a': 1, 'b': 0, 'c': {'ca': '3', 'cb': {'cba': 0, 'cbb': False}}}
+    >>> pprint(extract_subdict(d, ['a', 'c.cb.cbb']))
+    {'a': 1, 'c': {'cb': {'cbb': False}}}
     """
     if keys is None:
         return dictionary.copy()
@@ -109,3 +137,8 @@ def extract_subdict(dictionary, keys=None, strict=False):
                 raise KeyError(dotted_key)
 
     return _dict
+
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
