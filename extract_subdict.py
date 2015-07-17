@@ -7,17 +7,6 @@ def get_dotted_keys(_dict, prefix=None):
         The checked dict.
     prefix : str, optional
         If passed, all keys will have `prefix` + "." (a dot) as a prefix.
-
-    >>> d = {'a': 1, 'b': 'test', 'c': None, 'd': {'da': '3', 'db': 1.25, 'dc': {'dca': 0, 'dcb': False}}}
-
-    >>> sorted(get_dotted_keys(d))
-    ['a', 'b', 'c', 'd', 'd.da', 'd.db', 'd.dc', 'd.dc.dca', 'd.dc.dcb']
-
-    >>> sorted(get_dotted_keys(d, prefix='test'))
-    ['test.a', 'test.b', 'test.c', 'test.d', 'test.d.da', 'test.d.db', 'test.d.dc', 'test.d.dc.dca', 'test.d.dc.dcb']
-
-    >>> get_dotted_keys({})
-    []
     """
     keys = []
     for key, value in _dict.iteritems():
@@ -44,37 +33,13 @@ def get_item(_dict, dotted_key):
     _dict : dict
         The checked dict.
     dotted_key : str
-        The looked-up key, in dotted-notation (e.g: 'person.name', 'company.address.city')
+        The looked-up key, in dotted-notation (e.g: 'company.address.city')
 
     Raises
     ------
     KeyError
         If the key is invalid.
 
-    >>> from pprint import pprint
-    >>> d = {'a': 1, 'b': 'test', 'c': None, 'd': {'da': '3', 'db': 1.25, 'dc': {'dca': 0, 'dcb': False}}}
-
-    >>> get_item(d, 'a')
-    1
-
-    >>> pprint(get_item(d, 'd'), width=120)
-    {'da': '3', 'db': 1.25, 'dc': {'dca': 0, 'dcb': False}}
-
-    >>> pprint(get_item(d, 'd.dc'), width=120)
-    {'dca': 0, 'dcb': False}
-
-    >>> get_item(d, 'd.dc.dcb')
-    False
-
-    >>> pprint(get_item(d, 'error'), width=120)
-    Traceback (most recent call last):
-        ...
-    KeyError: 'error'
-
-    >>> pprint(get_item(d, 'd.dy.dcz'), width=120)
-    Traceback (most recent call last):
-        ...
-    KeyError: 'dy'
     """
     value = _dict.copy()
     for subkey in dotted_key.split('.'):
@@ -96,24 +61,6 @@ def set_item(_dict, dotted_key, value):
     value
         The value to be set.
 
-    >>> from pprint import pprint
-    >>> d = {}
-
-    >>> set_item(d, 'a', 1)
-    >>> pprint(d, width=120)
-    {'a': 1}
-
-    >>> set_item(d, 'b.a', True)
-    >>> pprint(d, width=120)
-    {'a': 1, 'b': {'a': True}}
-
-    >>> set_item(d, 'b.b', {'hey': 'oh', 'lets': 'go'})
-    >>> pprint(d, width=120)
-    {'a': 1, 'b': {'a': True, 'b': {'hey': 'oh', 'lets': 'go'}}}
-
-    >>> set_item(d, 'c.d.e', 42)
-    >>> pprint(d, width=120)
-    {'a': 1, 'b': {'a': True, 'b': {'hey': 'oh', 'lets': 'go'}}, 'c': {'d': {'e': 42}}}
     """
     key_parts = dotted_key.split('.')
     last_part_index = len(key_parts) - 1
@@ -128,49 +75,37 @@ def set_item(_dict, dotted_key, value):
             aux_dict[key_part] = value
 
 
-def extract_subdict(dictionary, fields=None):
+def extract_subdict(dictionary, keys=None, strict=False):
     """Return a subdict of a dict, only with the specified keys.
 
     Parameters
     ----------
     dictionary : dict
         The original dict, from which the subdict will be extracted.
-    fields : list of strings, optional
+    keys : list of strings, optional
         Keys, in dotted-notation (e.g: 'person.name', 'company.address.city'),
         from the original dict that must be in the subdict.
+    strict : bool, optional
+        If True, raises a KeyError if any of the `keys` is invalid.
+        If False (the default value), invalid keys are ignored.
 
-    >>> from pprint import pprint
-    >>> d = {'a': 1, 'b': 'test', 'c': None, 'd': {'da': '3', 'db': 1.25, 'dc': {'dca': 0, 'dcb': False}}}
-
-    >>> pprint(extract_subdict(d), width=120)
-    {'a': 1, 'b': 'test', 'c': None, 'd': {'da': '3', 'db': 1.25, 'dc': {'dca': 0, 'dcb': False}}}
-
-    >>> pprint(extract_subdict(d, ['a', 'b', 'c']), width=120)
-    {'a': 1, 'b': 'test', 'c': None}
-
-    >>> pprint(extract_subdict(d, ['c', 'd']), width=120)
-    {'c': None, 'd': {'da': '3', 'db': 1.25, 'dc': {'dca': 0, 'dcb': False}}}
-
-    >>> pprint(extract_subdict(d, ['c', 'd.da', 'd.dc']), width=120)
-    {'c': None, 'd': {'da': '3', 'dc': {'dca': 0, 'dcb': False}}}
-
-    >>> pprint(extract_subdict(d, ['d.dc.dcb']), width=120)
-    {'d': {'dc': {'dcb': False}}}
+    Raises
+    ------
+    KeyError
+        If at least one key is invalid AND `strict` is True.
     """
-    if fields is None:
+    if keys is None:
         return dictionary.copy()
 
     _dict = {}
 
     available_keys = get_dotted_keys(dictionary)
-    for dotted_key in fields:
-        assert dotted_key in available_keys, '%r not in %r' % (dotted_key, available_keys)
-        value = get_item(dictionary, dotted_key)
-        set_item(_dict, dotted_key, value)
+    for dotted_key in keys:
+        if dotted_key in available_keys:
+            value = get_item(dictionary, dotted_key)
+            set_item(_dict, dotted_key, value)
+        else:
+            if strict:
+                raise KeyError(dotted_key)
 
     return _dict
-
-
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
