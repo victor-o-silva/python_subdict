@@ -3,6 +3,8 @@
 
 The intent of this library is to make it easy to extract subdicts from python dicts by just specifying which keys are needed, in a dotted-syntax.
 
+The ipython notebook version of this documentation is [here](https://github.com/victor-o-silva/python_subdict/blob/master/README.ipynb). Please check it there.
+
 As an example, let's say that we have the following dict:
 
 
@@ -179,6 +181,3 @@ Extracting only the `'name'` of each album:
                 {'name': 'The Empyrean'}],
      'name': 'John Frusciante'}
 
-
-
-    
