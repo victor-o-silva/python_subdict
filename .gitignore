@@ -58,3 +58,6 @@ target/
 
 # Backup files
 *~
+
+# ipython
+.ipynb_checkpoints/
