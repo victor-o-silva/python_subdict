@@ -1,9 +1,13 @@
 
 # python_subdict
 
+<div style="float: left">
+[![Build Status](https://travis-ci.org/victor-o-silva/python_subdict.svg?branch=master)](https://travis-ci.org/victor-o-silva/python_subdict)
+</div>
+
 The intent of this library is to make it easy to extract subdicts from python dicts by just specifying which keys are needed, in a dotted-syntax.
 
-The ipython notebook version of this documentation is [here](https://github.com/victor-o-silva/python_subdict/blob/master/README.ipynb). Please check it there.
+The ipython notebook version of this documentation is [here](https://github.com/victor-o-silva/python_subdict/blob/master/README.ipynb). Please check it.
 
 As an example, let's say that we have the following dict:
 
