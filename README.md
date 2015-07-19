@@ -2,7 +2,8 @@
 # python_subdict
 
 <div style="float: left">
-[![Build Status](https://travis-ci.org/victor-o-silva/python_subdict.svg?branch=master)](https://travis-ci.org/victor-o-silva/python_subdict)&nbsp;[![Coverage Status](https://coveralls.io/repos/victor-o-silva/python_subdict/badge.svg?branch=master&service=github)](https://coveralls.io/github/victor-o-silva/python_subdict?branch=master)
+[![Build Status](https://travis-ci.org/victor-o-silva/python_subdict.svg?branch=master)](https://travis-ci.org/victor-o-silva/python_subdict)
+[![Coverage Status](https://coveralls.io/repos/victor-o-silva/python_subdict/badge.svg?branch=master&service=github)](https://coveralls.io/github/victor-o-silva/python_subdict?branch=master)
 </div>
 
 The intent of this library is to make it easy to extract subdicts from python dicts by just specifying which keys are needed, in a dotted-syntax.
