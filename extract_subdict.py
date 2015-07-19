@@ -1,5 +1,5 @@
 def get_dotted_keys(_dict, prefix=None):
-    """Return all valid dotted-notation keys of a dict.
+    """Return all valid dotted-syntax keys of a dict.
 
     Parameters
     ----------
@@ -32,14 +32,14 @@ def get_dotted_keys(_dict, prefix=None):
 
 
 def get_item(_dict, dotted_key):
-    """Return an item from a dict by a dotted-notation-key.
+    """Return an item from a dict by a dotted-syntax-key.
 
     Parameters
     ----------
     _dict : dict
         The checked dict.
     dotted_key : str
-        The looked-up key, in dotted-notation (e.g: 'company.address.city')
+        The looked-up key, in dotted-syntax (e.g: 'company.address.city')
 
     Raises
     ------
@@ -62,7 +62,7 @@ def get_item(_dict, dotted_key):
 
 
 def set_item(_dict, dotted_key, value):
-    """Set a value to the proper dotted-notation-key in a dict (in-place).
+    """Set a value to the proper dotted-syntax-key in a dict (in-place).
 
     Creates intermediate dicts as needed.
 
@@ -71,7 +71,7 @@ def set_item(_dict, dotted_key, value):
     _dict : dict
         The changed dict.
     dotted_key : str
-        The key, in dotted-notation
+        The key, in dotted-syntax.
     value
         The value to be set.
 
@@ -97,14 +97,14 @@ def set_item(_dict, dotted_key, value):
 
 
 def extract_subdict(dictionary, keys=None, strict=False):
-    """Return a subdict of a dict, only with the specified keys.
+    """Return a subdict of a dict, only with the specified dotted-syntax keys.
 
     Parameters
     ----------
     dictionary : dict
         The original dict, from which the subdict will be extracted.
     keys : list of strings, optional
-        Keys, in dotted-notation (e.g: 'person.name', 'company.address.city'),
+        Keys, in dotted-syntax (e.g: 'person.name', 'company.address.city'),
         from the original dict that must be in the subdict.
     strict : bool, optional
         If True, raises a KeyError if any of the `keys` is invalid.
