@@ -1,3 +1,7 @@
+import sys
+PYTHON3 = sys.version_info.major > 2
+
+
 def get_dotted_keys(_dict, prefix=None):
     """Return all valid dotted-syntax keys of a dict.
 
@@ -15,7 +19,7 @@ def get_dotted_keys(_dict, prefix=None):
     ['a', 'b', 'c', 'c.ca', 'c.cb', 'c.cb.cba', 'c.cb.cbb']
     """
     keys = []
-    for key, value in _dict.iteritems():
+    for key, value in (_dict.items() if PYTHON3 else _dict.iteritems()):
         if isinstance(value, dict):
             if prefix is None:
                 _prefix = key

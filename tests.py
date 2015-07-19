@@ -1,6 +1,8 @@
+import sys
 import unittest
 from extract_subdict import (extract_subdict, get_dotted_keys,
                              get_item, set_item)
+PYTHON3 = sys.version_info.major > 2
 
 
 # Auxiliar functions' tests
@@ -10,11 +12,19 @@ class BaseTestCase(unittest.TestCase):
         self.test_dict = {
             'name': 'Sherlock Holmes',
             'address': {
-                'street': {'type': 'Street', 'name': 'Baker'},
-                'number': '221B', 'city': 'London', 'country': 'England',
+                'street': {
+                    'type': 'Street',
+                    'name': 'Baker'
+                },
+                'number': '221B',
+                'city': 'London',
+                'country': 'England'
             },
-            'books': ['A Study in Scarlet', 'The Sign of the Four',
-                      'The Adventures of Sherlock Holmes']
+            'books': [
+                'A Study in Scarlet',
+                'The Sign of the Four',
+                'The Adventures of Sherlock Holmes'
+            ]
         }
 
 
@@ -57,15 +67,24 @@ class GetItem(BaseTestCase):
     def test_get_invalid_items(self):
         with self.assertRaises(KeyError) as cm:
             get_item(self.test_dict, 'birth_date')
-        self.assertEqual(cm.exception.message, 'birth_date')
+        self.assertEqual(
+            cm.exception.args[0] if PYTHON3 else cm.exception.message,
+            'birth_date'
+        )
 
         with self.assertRaises(KeyError) as cm:
             get_item(self.test_dict, 'address.postal_code')
-        self.assertEqual(cm.exception.message, 'postal_code')
+        self.assertEqual(
+            cm.exception.args[0] if PYTHON3 else cm.exception.message,
+            'postal_code'
+        )
 
         with self.assertRaises(KeyError) as cm:
             get_item(self.test_dict, 'address.street.old_name')
-        self.assertEqual(cm.exception.message, 'old_name')
+        self.assertEqual(
+            cm.exception.args[0] if PYTHON3 else cm.exception.message,
+            'old_name'
+        )
 
 
 class SetItem(BaseTestCase):
@@ -150,7 +169,10 @@ class ExtractSubdict(BaseTestCase):
 
         with self.assertRaises(KeyError) as cm:
             extract_subdict(self.test_dict, ['name', 'invalid'], strict=True)
-        self.assertEqual(cm.exception.message, 'invalid')
+        self.assertEqual(
+            cm.exception.args[0] if PYTHON3 else cm.exception.message,
+            'invalid'
+        )
 
 
 if __name__ == '__main__':
