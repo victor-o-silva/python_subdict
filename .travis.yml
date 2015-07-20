@@ -6,6 +6,6 @@ python:
 install:
     - pip install coveralls
 script:
-    - coverage run --source=extract_subdict tests.py
+    - coverage run --source=extract_subdict run_tests.py
 after_success:
     - coveralls

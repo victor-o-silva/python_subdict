@@ -141,8 +141,3 @@ def extract_subdict(dictionary, keys=None, strict=False):
                 raise KeyError(dotted_key)
 
     return _dict
-
-
-if __name__ == "__main__":  #pragma: no cover
-    import doctest
-    doctest.testmod()
