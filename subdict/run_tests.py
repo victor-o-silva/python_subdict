@@ -1,7 +1,7 @@
 # Run main module's doctests
 import doctest
-import extract_subdict
-doctest.testmod(extract_subdict)
+import subdict
+doctest.testmod(subdict)
 
 # Run unit tests
 import unittest

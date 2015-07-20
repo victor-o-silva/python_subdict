@@ -30,7 +30,7 @@ As an example, let's say that we have the following dict:
 If we need only the keys `'a'` and `'d'`, we can do this:
 
     
-    >>> from extract_subdict import extract_subdict  # The main function of the library
+    >>> from subdict import extract_subdict  # The main function of the library
     >>> from pprint import pprint  # Just for a nice presentation here
     >>> pprint( extract_subdict(d, ['a', 'd']) )
     {'a': 'A',

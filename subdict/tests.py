@@ -1,7 +1,7 @@
 import sys
 import unittest
-from extract_subdict import (extract_subdict, get_dotted_keys,
-                             get_item, set_item)
+from subdict import (extract_subdict, get_dotted_keys,
+                     get_item, set_item)
 PYTHON3 = sys.version_info.major > 2
 
 
@@ -173,7 +173,3 @@ class ExtractSubdict(BaseTestCase):
             cm.exception.args[0] if PYTHON3 else cm.exception.message,
             'invalid'
         )
-
-
-if __name__ == '__main__':
-    unittest.main()
