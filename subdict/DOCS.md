@@ -1,7 +1,7 @@
 
 # python_subdict - Documentation
 
-The ipython-notebook version of this document is [here](https://github.com/victor-o-silva/python_subdict/blob/master/DOCS.ipynb).
+The ipython-notebook version of this document is [here](https://github.com/victor-o-silva/python_subdict/blob/master/subdict/DOCS.ipynb).
 
 ## Usage example
 
