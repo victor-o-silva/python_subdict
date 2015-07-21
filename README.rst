@@ -28,6 +28,6 @@ Example
 Documentation Links
 -----------------------
 
-`IPython-Notebook version of the documentation <https://github.com/victor-o-silva/python_subdict/blob/master/subdict/DOCS.ipynb>`_
+`IPython-Notebook version of the documentation <https://github.com/victor-o-silva/python_subdict/blob/master/DOCS.ipynb>`_
 
-`Markdown version of the documentation <https://github.com/victor-o-silva/python_subdict/blob/master/subdict/DOCS.md>`_
+`Markdown version of the documentation <https://github.com/victor-o-silva/python_subdict/blob/master/DOCS.md>`_
