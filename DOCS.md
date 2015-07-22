@@ -69,7 +69,7 @@ The dotted-syntax can have any needed level of depth:
 
 ## Specifying invalid keys behavior
 
-Let's consider the following dict from now:
+Let's consider the following dict from now on:
 
     
     >>> person = {
