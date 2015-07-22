@@ -3,9 +3,6 @@ from distutils.core import setup
 with open('README.rst', 'r') as readme_file:
     readme_txt = readme_file.read()
 
-with open('LICENSE.txt', 'r') as license_file:
-    license_txt = license_file.read()
-
 setup(
     name='subdict',
     packages=['subdict'],
@@ -15,7 +12,16 @@ setup(
     long_description=readme_txt,
     author='Victor Oliveira da Silva',
     author_email='victor_o_silva@hotmail.com',
-    license=license_txt,
+    classifiers=[
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 3.4',
+    ],
     url='https://github.com/victor-o-silva/python_subdict',
     download_url='https://github.com/victor-o-silva/python_subdict/tarball/0.5'
 )
