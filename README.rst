@@ -21,6 +21,7 @@ dotted-syntax.
 Example
 -------------
 
+    >>> from subdict import extract_subdict
     >>> d = {'a': 1, 'b': 0, 'c': {'ca': '3', 'cb': {'cba': 0, 'cbb': False}}}
     >>> extract_subdict(d, ['a', 'c.cb.cbb'])
     {'a': 1, 'c': {'cb': {'cbb': False}}}

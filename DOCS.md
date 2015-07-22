@@ -3,6 +3,14 @@
 
 The ipython-notebook version of this document is [here](https://github.com/victor-o-silva/python_subdict/blob/master/DOCS.ipynb).
 
+## Installing
+
+You can [pip-install](https://pypi.python.org/pypi/pip) python_subdict in your environment by typing the following code on your shell:
+
+    
+    pip install subdict
+    
+
 ## Usage example
 
 As an example, let's say that we have the following dict:
