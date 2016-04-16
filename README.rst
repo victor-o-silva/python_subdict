@@ -14,6 +14,9 @@ python_subdict
    :target: https://coveralls.io/github/victor-o-silva/python_subdict?branch=master
    :alt: Coverage Status
 
+.. image:: https://badge.fury.io/py/subdict.svg
+   :target: https://badge.fury.io/py/subdict
+
 The intent of this library is to make it easy to extract subdicts from
 python dicts by just specifying which keys are needed, in a
 dotted-syntax.
